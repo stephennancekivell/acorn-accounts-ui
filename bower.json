@@ -7,6 +7,7 @@
 		"angular-scenario": "1.0.6",
 		"angular-mocks": "1.0.6",
 		"less.js": "v1.3.3",
-		"bootstrap": "2.3.1" 
+		"bootstrap": "2.3.1",
+		"angular-ui-utils": "v0.0.1" 
 	}
 }
