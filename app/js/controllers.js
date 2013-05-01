@@ -8,7 +8,9 @@ angular.module('myApp.controllers', ['myApp.services']).
 			Passwords.save({id:-1, password:''},
 				function ok(data){
 					$location.url('password/'+data.id);
-			});
+				}, function fail(data){
+					alert('Error to save.');
+				});
 		};
 
 		$scope.selectedId = $routeParams.id;
