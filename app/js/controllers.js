@@ -5,13 +5,15 @@ angular.module('myApp.controllers', ['myApp.services']).
 		$scope.passwords = Passwords.query();
 
 		$scope.makeNew = function(){
-			Passwords.save({id:-1, password:''},
+			Passwords.save({id:-1, password:'', title:'', description:''},
 				function ok(data){
-					$location.url('password/'+data.id);
+					$location.url('/p/'+data.id);
 				}, function fail(data){
 					alert('Error to save.');
 				});
 		};
 
-		$scope.selectedId = $routeParams.id;
+		$scope.select = function(e){
+			$scope.selected = e;
+		};
 	}]);
