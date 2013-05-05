@@ -1,4 +1,4 @@
-app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', function(Parties, $scope, $location, $routeParams) {
+app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', 'Users', function(Parties, $scope, $location, $routeParams, Users) {
 		'use strict';
 		$scope.groups = Parties.query({}, function ok(){
 			if ($routeParams.id){
@@ -7,6 +7,17 @@ app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', f
 				});
 			}
 		});
+
+		$scope.allUsers = Users.query();
+
+		$scope.$watch('selected', function(){
+			if (_.isUndefined($scope.selected)) return;
+			$scope.selected.$save();
+		},true);
+
+		$scope.isSelected = function(user){
+			return  !_.contains($scope.selected.users, user);
+		};
 
 		$scope.makeNew = function(){
 			Parties.save({id:-1, name:'new group'},

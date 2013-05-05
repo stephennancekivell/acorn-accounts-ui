@@ -18,6 +18,21 @@
 					<input type="text"
 						ng-model="selected.name"
 						ui-event="{'blur': 'selected.$save();'}" />
+
+					<h3>Users</h3>
+					<div class="row-fluid">
+						<ul class="span4">
+							<div btf-dragon="user in selected.users">
+								<span>{{user.name}}</span>
+							</div>
+						</ul>
+						<ul class="span4">
+							<div btf-dragon="user in allUsers | filter:isSelected:user">
+								<span>{{user.name}}</span>
+							</div>
+						</ul>
+					</div>
+
 				</pane>
 				<pane heading="Log">
 					<ul>
