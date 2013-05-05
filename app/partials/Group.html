@@ -1,0 +1,28 @@
+<div class="row-fluid">
+	<div class="span4">
+		<ul>
+			<li ng-repeat="group in groups">
+				<a href="" ng-click="select(group)">{{group.name}}</a>
+			</li>
+		</ul>
+		<button ng-click="makeNew()">Create New Group</button>
+	</div>
+	<div class="span8">
+		<div ui-if="selected">
+			<tabs>
+				<pane heading="Group">
+					<input type="text"
+						ng-model="selected.name"
+						ui-event="{'blur': 'selected.$save();'}" />
+				</pane>
+				<pane heading="Log">
+					<ul>
+						<li>read by Joe 5 min ago</li>
+						<li>read by Frances 5 min ago</li>
+						<li>updated by Paul 6 days ago</li>
+					</ul>
+				</pane>
+			</tabs>
+		</div>
+	</div>
+</div>
