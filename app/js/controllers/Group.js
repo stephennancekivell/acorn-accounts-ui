@@ -1,4 +1,4 @@
-app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', 'Users', function(Parties, $scope, $location, $routeParams, Users) {
+app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', 'Users', '$http', function(Parties, $scope, $location, $routeParams, Users, $http) {
 		'use strict';
 		$scope.groups = Parties.query({}, function ok(){
 			if ($routeParams.id){
@@ -12,7 +12,7 @@ app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', '
 
 		$scope.$watch('selected', function(){
 			if (_.isUndefined($scope.selected)) return;
-			$scope.selected.$save();
+			$http.post('/play/parties/'+$scope.selected.id+'/users', $scope.selected.users);
 		},true);
 
 		$scope.isSelected = function(user){
