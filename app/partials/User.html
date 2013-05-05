@@ -1,8 +1,12 @@
 <div class="row-fluid">
 	<div class="span4">
 		<ul>
-			<li ng-repeat="user in users">
+			<li ng-repeat="user in users"
+				ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
 				<a href="" ng-click="select(user)">{{user.name}}</a>
+				<i class="icon-remove"
+					ng-show="removeVisible"
+					ng-click="remove(user);"></i>
 			</li>
 		</ul>
 		<button ng-click="makeNew()">Create New User</button>

@@ -56,6 +56,18 @@ angular.module('myApp.controllers', ['myApp.services']).
 		$scope.select = function(e){
 			$scope.selected = e;
 		};
+
+		$scope.remove = function(p){
+			$scope.users = _.reject($scope.users, function(pp){
+				return pp.id === p.id;
+			});
+
+			if ($scope.selected && $scope.selected.id === p.id) {
+				$scope.selected = undefined;
+			}
+
+			p.$delete();
+		};
 	}]).
 	controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', function(Parties, $scope, $location, $routeParams) {
 		$scope.groups = Parties.query({}, function ok(){
@@ -77,5 +89,17 @@ angular.module('myApp.controllers', ['myApp.services']).
 
 		$scope.select = function(e){
 			$scope.selected = e;
+		};
+
+		$scope.remove = function(p){
+			$scope.groups = _.reject($scope.groups, function(pp){
+				return pp.id === p.id;
+			});
+
+			if ($scope.selected && $scope.selected.id === p.id) {
+				$scope.selected = undefined;
+			}
+
+			p.$delete();
 		};
 	}]);
