@@ -9,6 +9,6 @@ angular.module('myApp.services', ['ngResource']).
 	factory('Users', ['$resource', function($resource){
 		return $resource(base_url+'users/:id', {id:'@id'});
 	}]).
-	factory('Parties', ['$resource', function($resource){
-		return $resource(base_url+'parties/:id', {id:'@id'});
+	factory('Groups', ['$resource', function($resource){
+		return $resource(base_url+'groups/:id', {id:'@id'});
 	}]);

@@ -1,6 +1,6 @@
-app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', 'Users', '$http', function(Parties, $scope, $location, $routeParams, Users, $http) {
+app.controller('GroupCtrl', ['Groups', '$scope', '$location', '$routeParams', 'Users', '$http', function(Groups, $scope, $location, $routeParams, Users, $http) {
 		'use strict';
-		$scope.groups = Parties.query({}, function ok(){
+		$scope.groups = Groups.query({}, function ok(){
 			if ($routeParams.id){
 				$scope.selected = _.find($scope.groups, function(p){
 					return p.id == $routeParams.id;
@@ -12,7 +12,7 @@ app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', '
 
 		$scope.$watch('selected', function(){
 			if (_.isUndefined($scope.selected)) return;
-			$http.post('/play/parties/'+$scope.selected.id+'/users', $scope.selected.users);
+			$http.post('/play/groups/'+$scope.selected.id+'/users', $scope.selected.users);
 		},true);
 
 		$scope.isSelected = function(user){
@@ -20,7 +20,7 @@ app.controller('GroupCtrl', ['Parties', '$scope', '$location', '$routeParams', '
 		};
 
 		$scope.makeNew = function(){
-			Parties.save({id:-1, name:'new group'},
+			Groups.save({id:-1, name:'new group'},
 				function ok(data){
 					$location.url('/g/'+data.id);
 				}, function fail(data){
