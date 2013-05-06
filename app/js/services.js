@@ -11,4 +11,12 @@ angular.module('myApp.services', ['ngResource']).
 	}]).
 	factory('Groups', ['$resource', function($resource){
 		return $resource(base_url+'groups/:id', {id:'@id'});
+	}]).
+	factory('Parties', ['$resource', function($resource){
+		return $resource(base_url+'parties/:id', {id:'@id'});
+	}]).
+	factory('Permissions', ['$resource', function($resource){
+		return $resource(base_url+'passwords/:passwordID/permissions', {
+			passwordID:'@passwordID'
+		});
 	}]);
