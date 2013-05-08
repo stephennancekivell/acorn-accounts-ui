@@ -6,13 +6,15 @@ app.controller('PasswordListCtrl', [
 			'Groups',
 			'Parties',
 			'Permissions',
+			'$http',
 			function(Passwords,
 				$scope,
 				$location,
 				$routeParams,
 				Groups,
 				Parties,
-				Permissions) {
+				Permissions,
+				$http) {
 		'use strict';
 
 		$scope.passwords = Passwords.query({}, function ok(){
@@ -70,14 +72,32 @@ app.controller('PasswordListCtrl', [
 
 		$scope.addPermission = function(group){
 			if (_.isUndefined($scope.selected)) return;
-			console.log('creating perm for '+group+' '+$scope.selected);
 			var newPerm = Permissions.save({
 				passwordID: $scope.selected.id,
 				partyID: group.id,
 				canRead: true,
-				canWrite: false
+				canWrite: false,
+				party: group
 			}, function ok(){
 				$scope.selected.permissions.push(newPerm);
+			});
+		};
+
+		$scope.removePermission = function(perm){
+			$http.delete('/play/passwords/'+perm.passwordID+
+					'/permissions/'+perm.partyID)
+				.success(function (){
+					$scope.selected.permissions = _.reject(
+						$scope.selected.permissions, function(p){
+							return (p.partyID === perm.partyID) &&
+								(p.passwordID === perm.passwordID);
+						});
+				});
+		};
+
+		$scope.passwordPermissionsHaveGroup = function(group){
+			return !_.find($scope.selected.permissions, function(perm){
+				return (perm.partyID === group.id);
 			});
 		};
 	}]);
