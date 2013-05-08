@@ -70,15 +70,14 @@ app.controller('PasswordListCtrl', [
 
 		$scope.addPermission = function(group){
 			if (_.isUndefined($scope.selected)) return;
-			Permissions.save({
+			console.log('creating perm for '+group+' '+$scope.selected);
+			var newPerm = Permissions.save({
 				passwordID: $scope.selected.id,
 				partyID: group.id,
-				canRead: false,
+				canRead: true,
 				canWrite: false
+			}, function ok(){
+				$scope.selected.permissions.push(newPerm);
 			});
-
-
-
-
 		};
 	}]);
