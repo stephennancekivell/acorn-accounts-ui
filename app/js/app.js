@@ -7,7 +7,15 @@ var app = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.dir
 			controller: 'PasswordListCtrl',
 			reloadOnSearch: false
 		});
-		$routeProvider.when('/u/:id', {templateUrl: 'partials/User.html', controller: 'UserCtrl'});
-		$routeProvider.when('/g/:id', {templateUrl: 'partials/Group.html', controller: 'GroupCtrl'});
+		$routeProvider.when('/u', {
+			templateUrl: 'partials/User.html',
+			controller: 'UserCtrl',
+			reloadOnSearch: false
+		});
+		$routeProvider.when('/g', {
+			templateUrl: 'partials/Group.html',
+			controller: 'GroupCtrl',
+			reloadOnSearch: false
+		});
 		$routeProvider.otherwise({redirectTo: '/p'});
 	}]);

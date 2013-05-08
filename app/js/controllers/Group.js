@@ -43,4 +43,10 @@ app.controller('GroupCtrl', ['Groups', '$scope', '$location', '$routeParams', 'U
 
 			p.$delete();
 		};
+
+		$scope.removeUser = function(user) {
+			$scope.selected.users = _.reject($scope.selected.users, function(u){
+				return u.id === user.id;
+			});
+		};
 	}]);

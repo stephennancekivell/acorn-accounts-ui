@@ -5,8 +5,15 @@
 
 angular.module('myApp.directives', [])
 .
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]);
+directive('isHovered', [function() {
+	return function(scope, elm, attrs) {
+		$(elm).bind('mouseenter', function(){
+			scope.isHovered = true;
+			scope.$apply();
+		});
+		$(elm).bind('mouseleave', function(){
+			scope.isHovered = false;
+			scope.$apply();
+		});
+	};
+}]);

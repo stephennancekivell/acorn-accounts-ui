@@ -3,7 +3,8 @@
 		<ul>
 			<li ng-repeat="group in groups"
 				ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
-				<a href="" ng-click="select(group)">{{group.name}}</a>
+				<a ng-href="#/g?id={{group.id}}"
+					ng-click="select(group)">{{group.name}}</a>
 				<i class="icon-remove"
 					ng-show="removeVisible"
 					ng-click="remove(group);"></i>
@@ -22,14 +23,18 @@
 					<h3>Users</h3>
 					<div class="row-fluid">
 						<ul class="span4">
-							<div btf-dragon="user in selected.users">
-								<span>{{user.name}}</span>
-							</div>
+							<li ng-repeat="user in selected.users"
+								ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
+								<span>{{user.name}}<span>
+								<i class="icon-remove"
+									ng-show="removeVisible"
+									ng-click="removeUser(user);"></i>
+							</li>
 						</ul>
 						<ul class="span4">
-							<div btf-dragon="user in allUsers | filter:isSelected:user">
-								<span>{{user.name}}</span>
-							</div>
+							<li ng-repeat="user in allUsers | filter:isSelected:user">
+								<a ng-click="selected.users.push(user);">{{user.name}}</a>
+							</li>
 						</ul>
 					</div>
 
