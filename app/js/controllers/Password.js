@@ -83,6 +83,10 @@ app.controller('PasswordListCtrl', [
 			});
 		};
 
+		$scope.savePermission = function(permission){
+			Permissions.save(permission);
+		};
+
 		$scope.removePermission = function(perm){
 			$http.delete('/play/passwords/'+perm.passwordID+
 					'/permissions/'+perm.partyID)
