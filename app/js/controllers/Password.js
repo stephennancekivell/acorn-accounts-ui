@@ -48,7 +48,9 @@ app.controller('PasswordListCtrl', [
 		$scope.makeNew = function(){
 			Passwords.save({id:-1, password:'', title:'new password', description:''},
 				function ok(data){
-					$location.url('/p/'+data.id);
+					$location.search('/p',data.id);
+					$scope.selected = data;
+					$scope.passwords.push(data);
 				}, function fail(data){
 					alert('Error to save.');
 				});
@@ -65,6 +67,7 @@ app.controller('PasswordListCtrl', [
 
 			if ($scope.selected && $scope.selected.id === p.id) {
 				$scope.selected = undefined;
+				$location.url('/p');
 			}
 
 			p.$delete();

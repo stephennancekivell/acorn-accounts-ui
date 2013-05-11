@@ -22,7 +22,9 @@ app.controller('GroupCtrl', ['Groups', '$scope', '$location', '$routeParams', 'U
 		$scope.makeNew = function(){
 			Groups.save({id:-1, name:'new group'},
 				function ok(data){
-					$location.url('/g/'+data.id);
+					$location.search('id', data.id);
+					$scope.selected = data;
+					$scope.groups.push(data);
 				}, function fail(data){
 					alert('Error to save.');
 				});
@@ -39,6 +41,7 @@ app.controller('GroupCtrl', ['Groups', '$scope', '$location', '$routeParams', 'U
 
 			if ($scope.selected && $scope.selected.id === p.id) {
 				$scope.selected = undefined;
+				$location.url('/g');
 			}
 
 			p.$delete();

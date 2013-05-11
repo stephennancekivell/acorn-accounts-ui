@@ -11,7 +11,9 @@ app.controller('UserCtrl', ['Users', '$scope', '$location', '$routeParams', func
 		$scope.makeNew = function(){
 			Users.save({id:-1, name:'new user'},
 				function ok(data){
-					$location.url('/u/'+data.id);
+					$location.search('id', data.id);
+					$scope.selected = data;
+					$scope.users.push(data);
 				}, function fail(data){
 					alert('Error to save.');
 				});
@@ -28,6 +30,7 @@ app.controller('UserCtrl', ['Users', '$scope', '$location', '$routeParams', func
 
 			if ($scope.selected && $scope.selected.id === p.id) {
 				$scope.selected = undefined;
+				$location.url('/u');
 			}
 
 			p.$delete();
