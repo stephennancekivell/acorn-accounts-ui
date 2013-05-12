@@ -3,8 +3,8 @@
 var app = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'ui.event', 'ui.if', 'ui.bootstrap', 'btford.dragon-drop']).
 	config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/p', {
-			templateUrl: 'partials/Password.html',
-			controller: 'PasswordListCtrl',
+			templateUrl: 'partials/Account.html',
+			controller: 'AccountListCtrl',
 			reloadOnSearch: false
 		});
 		$routeProvider.when('/u', {

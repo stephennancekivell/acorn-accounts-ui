@@ -1,5 +1,5 @@
-app.controller('PasswordListCtrl', [
-			'Passwords',
+app.controller('AccountListCtrl', [
+			'Accounts',
 			'$scope',
 			'$location',
 			'$routeParams',
@@ -7,7 +7,7 @@ app.controller('PasswordListCtrl', [
 			'Parties',
 			'Permissions',
 			'$http',
-			function(Passwords,
+			function(Accounts,
 				$scope,
 				$location,
 				$routeParams,
@@ -17,9 +17,9 @@ app.controller('PasswordListCtrl', [
 				$http) {
 		'use strict';
 
-		$scope.passwords = Passwords.query({}, function ok(){
+		$scope.accounts = Accounts.query({}, function ok(){
 			if ($routeParams.id){
-				$scope.selected = _.find($scope.passwords, function(p){
+				$scope.selected = _.find($scope.accounts, function(p){
 					return p.id == $routeParams.id;
 				});
 			}
@@ -46,11 +46,15 @@ app.controller('PasswordListCtrl', [
 		};
 
 		$scope.makeNew = function(){
-			Passwords.save({id:-1, password:'', title:'new password', description:''},
+			Accounts.save({id:-1,
+				username: '',
+				title:'new password',
+				description:'',
+				permissions: []},
 				function ok(data){
 					$location.search('/p',data.id);
 					$scope.selected = data;
-					$scope.passwords.push(data);
+					$scope.accounts.push(data);
 				}, function fail(data){
 					alert('Error to save.');
 				});
@@ -61,7 +65,7 @@ app.controller('PasswordListCtrl', [
 		};
 
 		$scope.remove = function(p){
-			$scope.passwords = _.reject($scope.passwords, function(pp){
+			$scope.accounts = _.reject($scope.accounts, function(pp){
 				return pp.id === p.id;
 			});
 
@@ -91,7 +95,7 @@ app.controller('PasswordListCtrl', [
 		};
 
 		$scope.removePermission = function(perm){
-			$http.delete('/play/passwords/'+perm.passwordID+
+			$http.delete('/play/accounts/'+perm.passwordID+
 					'/permissions/'+perm.partyID)
 				.success(function (){
 					$scope.selected.permissions = _.reject(

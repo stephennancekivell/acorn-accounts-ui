@@ -1,32 +1,21 @@
 <div class="row-fluid">
 	<div class="span4">
 		<ul>
-			<li ng-repeat="password in passwords"
+			<li ng-repeat="account in accounts"
 				ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
-				<a ng-href="#/p?id={{password.id}}" ng-click="select(password)">{{password.title}}</a>
+				<a ng-href="#/p?id={{account.id}}" ng-click="select(account)">{{account.title}}</a>
 				<i class="icon-remove"
 					ng-show="removeVisible"
-					ng-click="remove(password);"></i>
+					ng-click="remove(account);"></i>
 			</li>
 		</ul>
-		<button ng-click="makeNew()">Create New Password</button>
+		<button ng-click="makeNew()">Create New Account</button>
 	</div>
 	<div class="span8">
 		<div ui-if="selected">
 			<tabs>
-				<pane heading="Password">
+				<pane heading="Account">
 					<form class="form-horizontal">
-						<div class="control-group">
-							<label class="control-label"
-								for="inputPassword">Password</label>
-							<div class="controls">
-							<input type="text"
-								placeholder="password"
-								id="inputPassword"
-								ng-model="selected.password"
-								ui-event="{'blur': 'selected.$save();'}" />
-							</div>
-						</div>
 						<div class="control-group">
 							<label class="control-label"
 								for="inputTitle">Title</label>
@@ -35,6 +24,28 @@
 								placeholder="Title"
 								id="inputTitle"
 								ng-model="selected.title"
+								ui-event="{'blur': 'selected.$save();'}" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label"
+								for="inputUserName">User Name</label>
+							<div class="controls">
+							<input type="text"
+								placeholder="user name"
+								id="inputUserName"
+								ng-model="selected.inputUserName"
+								ui-event="{'blur': 'selected.$save();'}" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label"
+								for="inputPassword">Password</label>
+							<div class="controls">
+							<input type="text"
+								placeholder="password"
+								id="inputPassword"
+								ng-model="selected.password"
 								ui-event="{'blur': 'selected.$save();'}" />
 							</div>
 						</div>
@@ -56,24 +67,24 @@
 						<pane heading="Read Access">
 							<div class="row-fluid">
 								<div class="span4">
-									<h4>Have Read Access</h4>
+									<h4>Have</h4>
 									<ul>
 										<li ng-repeat="permission in selected.permissions"
 											is-hovered>
 											{{permission.party.name}}
 											<a ng-show="isHovered"
-													ng-click="removePermission(permission);">Remove Access</a>
+													ng-click="removePermission(permission);">Remove</a>
 										</li>
 									</ul>
 								</div>
 								<div class="span4">
-									<h4>Dont Have Access</h4>
+									<h4>Dont</h4>
 									<ul>
 										<li ng-repeat="party in allGroups | filter:passwordPermissionsHaveGroup:party"
 											is-hovered>
 											{{party.name}}
 											<a ng-show="isHovered"
-													ng-click="addPermission(party)">Grant Access</a>
+													ng-click="addPermission(party)">Grant</a>
 										</li>
 									</ul>
 								</div>
@@ -81,53 +92,28 @@
 						</pane>
 						<pane heading="write Access">
 							<div class="span4">
-								<h4>Have Write Access</h4>
+								<h4>Have</h4>
 								<ul>
 									<li ng-repeat="permission in selected.permissions | filter:permission.canWrite"
 										is-hovered>{{permission.party.name}}
 										<a ng-show="isHovered"
-											ng-click="permission.canWrite=false; savePermission(password);">Remove Write Access</a>
+											ng-click="permission.canWrite=false; savePermission(password);">Remove</a>
 									</li>
 								</ul>
 							</div>
 							<div class="span4">
-								<h4>Dont Have Write Access</h4>
+								<h4>Dont</h4>
 									<li ng-repeat="permission in selected.permissions | filter:!permission.canWrite"
 										is-hovered>{{permission.party.name}}
 										<a ng-show="isHovered"
-											ng-click="permission.canWrite=true; savePermission(password);">Grant Write Access</a>
+											ng-click="permission.canWrite=true; savePermission(password);">Grant</a>
 									</li>
 								</h4>
 							</div>
 						</pane>
 					</tabs>
-					<!-- <div class="row-fluid">
-						<div class="span4">
-							<h4>Access Rights</h4>
-							<ul>
-								<li ng-repeat="permission in selected.permissions"
-									ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
-									<input type="checkbox"
-										ng-model="permission.canWrite"
-										ng-change="savePermission(permission);">{{permission.party.name}}</input>
-									<i class="icon-remove"
-											ng-show="removeVisible"
-											ng-click="removePermission(permission);"></i>
-								</li>
-							</ul>
-						</div>
-						<div class="span4">
-							<h4>Grant Access</h4>
-							<ul>
-								<li ng-repeat="group in allGroups | filter:passwordPermissionsHaveGroup:group">
-									<a href="" ng-click="addPermission(group)">{{group.name}}</a>
-								</li>
-							</ul>
-						</div>
-
-					</div> -->
 				</pane>
-				<pane heading="Log">
+				<pane heading="History">
 					<ul>
 						<li>read by Joe 5 min ago</li>
 						<li>read by Frances 5 min ago</li>
