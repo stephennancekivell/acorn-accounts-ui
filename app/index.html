@@ -26,11 +26,9 @@
           <a class="brand" href="#">Password Safe</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">Settings</a></li>
-              <li><a href="#contact">Audit</a></li>
-              <li><a href="#/u/">Users</a></li>
-              <li><a href="#/g/">Groups</a></li>
+              <li ui-route="#/p" ng-class="{active: $uiRoute}"><a href="#/p">Passwords</a></li>
+              <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
+              <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

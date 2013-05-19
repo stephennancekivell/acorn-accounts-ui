@@ -1,6 +1,15 @@
 'use strict';
 
-var app = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'ui.event', 'ui.if', 'ui.bootstrap', 'btford.dragon-drop']).
+var app = angular.module(
+	'myApp',
+	['myApp.filters',
+		'myApp.services',
+		'myApp.directives',
+		'ui.event',
+		'ui.if',
+		'ui.bootstrap',
+		'btford.dragon-drop',
+		'ui.route']).
 	config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/p', {
 			templateUrl: 'partials/Account.html',
