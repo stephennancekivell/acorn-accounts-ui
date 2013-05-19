@@ -6,6 +6,9 @@ angular.module('myApp.services', ['ngResource']).
 	factory('Accounts', ['$resource', function($resource){
 		return $resource(base_url+'accounts/:id', {id:'@id'});
 	}]).
+	factory('AccountPasswords', ['$resource', function($resource){
+		return $resource(base_url+'accounts/:id/password', {id:'@id'});
+	}]).
 	factory('Users', ['$resource', function($resource){
 		return $resource(base_url+'users/:id', {id:'@id'});
 	}]).

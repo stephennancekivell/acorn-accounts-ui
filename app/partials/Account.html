@@ -20,44 +20,46 @@
 							<label class="control-label"
 								for="inputTitle">Title</label>
 							<div class="controls">
-							<input type="text"
-								placeholder="Title"
-								id="inputTitle"
-								ng-model="selected.title"
-								ui-event="{'blur': 'selected.$save();'}" />
+								<input type="text"
+									placeholder="Title"
+									id="inputTitle"
+									ng-model="selected.title"
+									ui-event="{'blur': 'selected.$save();'}" />
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label"
 								for="inputUserName">User Name</label>
 							<div class="controls">
-							<input type="text"
-								placeholder="user name"
-								id="inputUserName"
-								ng-model="selected.inputUserName"
-								ui-event="{'blur': 'selected.$save();'}" />
+								<input type="text"
+									placeholder="user name"
+									id="inputUserName"
+									ng-model="selected.username"
+									ui-event="{'blur': 'selected.$save();'}" />
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label"
 								for="inputPassword">Password</label>
 							<div class="controls">
-							<input type="text"
-								placeholder="password"
-								id="inputPassword"
-								ng-model="selected.password"
-								ui-event="{'blur': 'selected.$save();'}" />
+								<input type="text"
+									placeholder="password"
+									id="inputPassword"
+									ng-model="password.password"
+									ui-event="{'blur': 'password.$save({id:selected.id});'}"
+									ng-show="showPassword" />
+								<button class="btn-link" ng-click="showPassword();">show</button>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label"
 								for="inputDescription">Description</label>
 							<div class="controls">
-							<textarea 
-								placeholder="Description"
-								id="inputDescription"
-								ng-model="selected.description"
-								ui-event="{'blur': 'selected.$save();'}" />
+								<textarea 
+									placeholder="Description"
+									id="inputDescription"
+									ng-model="selected.description"
+									ui-event="{'blur': 'selected.$save();'}" />
 							</div>
 						</div>
 					</form>

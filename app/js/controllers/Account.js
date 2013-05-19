@@ -7,6 +7,8 @@ app.controller('AccountListCtrl', [
 			'Parties',
 			'Permissions',
 			'$http',
+			'$timeout',
+			'AccountPasswords',
 			function(Accounts,
 				$scope,
 				$location,
@@ -14,8 +16,12 @@ app.controller('AccountListCtrl', [
 				Groups,
 				Parties,
 				Permissions,
-				$http) {
+				$http,
+				$timeout,
+				AccountPasswords) {
 		'use strict';
+
+		app.AccountListCtrlSc = $scope;
 
 		$scope.accounts = Accounts.query({}, function ok(){
 			if ($routeParams.id){
@@ -110,5 +116,15 @@ app.controller('AccountListCtrl', [
 			return !_.find($scope.selected.permissions, function(perm){
 				return (perm.partyID === group.id);
 			});
+		};
+
+		$scope.showPassword = function(){
+			$scope.password = AccountPasswords.get({id: $scope.selected.id});
+
+			$scope.showPassword = true;
+			$timeout(function(){
+				$scope.showPassword = false;
+				$scope.password = undefined;
+			},20000);
 		};
 	}]);
