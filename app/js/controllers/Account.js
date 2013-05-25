@@ -121,10 +121,17 @@ app.controller('AccountListCtrl', [
 		$scope.showPassword = function(){
 			$scope.password = AccountPasswords.get({id: $scope.selected.id});
 
-			$scope.showPassword = true;
+			$scope.passwordShowing = true;
 			$timeout(function(){
-				$scope.showPassword = false;
+				$scope.passwordShowing = false;
 				$scope.password = undefined;
-			},20000);
+			},2000);
 		};
+
+		$scope.progress=0;
+		setInterval(function(){
+			$scope.progress = ($scope.progress + 1) % 30;
+			$scope.$apply();
+		}, 1000);
+
 	}]);

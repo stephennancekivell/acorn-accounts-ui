@@ -38,7 +38,7 @@
 									ui-event="{'blur': 'selected.$save();'}" />
 							</div>
 						</div>
-						<div class="control-group">
+						<!-- <div class="control-group">
 							<label class="control-label"
 								for="inputPassword">Password</label>
 							<div class="controls">
@@ -47,10 +47,26 @@
 									id="inputPassword"
 									ng-model="password.password"
 									ui-event="{'blur': 'password.$save({id:selected.id});'}"
-									ng-show="showPassword" />
-								<button class="btn-link" ng-click="showPassword();">show</button>
+									ng-show="passwordShowing" />
+								<button class="btn-link"
+									ng-click="showPassword();"
+									ng-hide="passwordShowing">show</button>
+								
+								<i progress-knob p="progress" />
+
+							</div>
+						</div> -->
+
+
+						<div class="control-group">
+							<label class="control-label"
+								for="inputPassword">Password</label>
+							<div class="controls">
+								<div secret="password.password"></div>
 							</div>
 						</div>
+
+
 						<div class="control-group">
 							<label class="control-label"
 								for="inputDescription">Description</label>

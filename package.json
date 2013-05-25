@@ -9,7 +9,8 @@
     "bootstrap": "http://twitter.github.com/bootstrap/assets/bootstrap.zip",
     "angular-ui-utils": "v0.0.1",
     "underscore": "~1.4.4",
-    "angular-dragon-drop": "~0.0.1"
+    "angular-dragon-drop": "~0.0.1",
+    "jquery-knob": "~1.2.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
