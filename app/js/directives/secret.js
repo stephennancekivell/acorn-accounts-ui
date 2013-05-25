@@ -74,7 +74,6 @@ app.directive('secret', ['$timeout', function($timeout){
 
 			scope.$watch('secret', function(a,b){
 				scope.stopTimeout();
-				console.log('watch secret',typeof a, typeof b);
 			});
 		}
 	};

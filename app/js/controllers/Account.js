@@ -117,21 +117,4 @@ app.controller('AccountListCtrl', [
 				return (perm.partyID === group.id);
 			});
 		};
-
-		$scope.showPassword = function(){
-			$scope.password = AccountPasswords.get({id: $scope.selected.id});
-
-			$scope.passwordShowing = true;
-			$timeout(function(){
-				$scope.passwordShowing = false;
-				$scope.password = undefined;
-			},2000);
-		};
-
-		$scope.progress=0;
-		setInterval(function(){
-			$scope.progress = ($scope.progress + 1) % 30;
-			$scope.$apply();
-		}, 1000);
-
 	}]);
