@@ -79,11 +79,11 @@
 								<div class="span4">
 									<h4>Dont</h4>
 									<ul>
-										<li ng-repeat="party in allGroups | filter:passwordPermissionsHaveGroup:party"
+										<li ng-repeat="party in allParties | filter:passwordPermissionsHaveGroup:party"
 											is-hovered>
 											{{party.name}}
 											<a ng-show="isHovered"
-													ng-click="addPermission(party)">Grant</a>
+													ng-click="addPermission(party, false)">Grant</a>
 										</li>
 									</ul>
 								</div>
@@ -102,10 +102,10 @@
 							</div>
 							<div class="span4">
 								<h4>Dont</h4>
-									<li ng-repeat="permission in selected.permissions | filter:!permission.canWrite"
-										is-hovered>{{permission.party.name}}
+									<li ng-repeat="party in allParties | filter:passwordPermissionsHaveGroup:party"
+										is-hovered>{{party.name}}
 										<a ng-show="isHovered"
-											ng-click="permission.canWrite=true; savePermission(password);">Grant</a>
+											ng-click="addPermission(party, true);">Grant</a>
 									</li>
 								</h4>
 							</div>

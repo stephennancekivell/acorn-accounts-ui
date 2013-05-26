@@ -19,7 +19,7 @@ angular.module('myApp.services', ['ngResource']).
 		return $resource(base_url+'parties/:id', {id:'@id'});
 	}]).
 	factory('Permissions', ['$resource', function($resource){
-		return $resource(base_url+'accounts/:passwordID/permissions', {
-			passwordID:'@passwordID'
+		return $resource(base_url+'accounts/:accountID/permissions', {
+			accountID:'@accountID'
 		});
 	}]);

@@ -31,7 +31,7 @@ app.controller('AccountListCtrl', [
 			}
 		});
 
-		$scope.allGroups = Groups.query();
+		$scope.allParties = Parties.query();
 
 		$scope.$watch('selected', function(){
 			if (_.isUndefined($scope.selected)){
@@ -83,13 +83,13 @@ app.controller('AccountListCtrl', [
 			p.$delete();
 		};
 
-		$scope.addPermission = function(group){
+		$scope.addPermission = function(group, canWrite){
 			if (_.isUndefined($scope.selected)) return;
 			var newPerm = Permissions.save({
-				passwordID: $scope.selected.id,
+				accountID: $scope.selected.id,
 				partyID: group.id,
 				canRead: true,
-				canWrite: false,
+				canWrite: canWrite,
 				party: group
 			}, function ok(){
 				$scope.selected.permissions.push(newPerm);
@@ -101,13 +101,13 @@ app.controller('AccountListCtrl', [
 		};
 
 		$scope.removePermission = function(perm){
-			$http.delete('/play/accounts/'+perm.passwordID+
+			$http.delete('/play/accounts/'+perm.accountID+
 					'/permissions/'+perm.partyID)
 				.success(function (){
 					$scope.selected.permissions = _.reject(
 						$scope.selected.permissions, function(p){
 							return (p.partyID === perm.partyID) &&
-								(p.passwordID === perm.passwordID);
+								(p.accountID === perm.accountID);
 						});
 				});
 		};
