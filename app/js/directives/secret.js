@@ -14,8 +14,6 @@ app.directive('secret', ['$timeout', function($timeout){
 			secret:'='
 		},
 		link: function(scope, elm, attrs){
-			app.secretSc = scope;
-			console.log('secret link');
 			scope.show = false;
 			var knob = $(elm).find('#knob');
 			var MAX_KNOB_VAL = 60;

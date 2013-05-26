@@ -47,6 +47,16 @@ app.controller('AccountListCtrl', [
 			}
 		});
 
+		var debounceSaveSelected = _.debounce(function(){
+			$scope.selected.$save();
+		}, 1000);
+
+		$scope.$watch('selected', function(a,b){
+			if (_.isUndefined(a) || _.isUndefined(b)) return;
+			
+			debounceSaveSelected();
+		},true);
+
 		$scope.isSelected = function(group){
 			return !_.contains($scope.selectedGroupIds, group.id);
 		};
