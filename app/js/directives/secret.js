@@ -1,4 +1,4 @@
-app.directive('secret', ['$timeout', function($timeout){
+app.directive('secret', ['$timeout', '$http', function($timeout, $http){
 	'use strict';
 	return {
 		// show on click.
@@ -7,11 +7,11 @@ app.directive('secret', ['$timeout', function($timeout){
 		template: '<div>'+
 						'<input ng-show="show" type="text" ng-model="secret"></input>'+
 						'<button ng-show="!show" ng-click="click();" class="btn btn-link">show</button>'+
-						'<button ng-show="show" ng-click="stopTimeout();show=false;" class="btn btn-link">hide</button>'+
+						'<button ng-show="show" ng-disabled="savePending" ng-click="stopTimeout();hide();" class="btn btn-link">hide</button>'+
 						'<i ng-show="show" id="knob" />'+
 					'</div>',
 		scope: {
-			secret:'='
+			src:'@'
 		},
 		link: function(scope, elm, attrs){
 			scope.show = false;
@@ -30,18 +30,30 @@ app.directive('secret', ['$timeout', function($timeout){
 			knob.knob().hide();
 
 			scope.click = function(){
-				if (scope.show){
-					scope.show = false;
-					scope.stopTimeout();
-				} else {
-					scope.show = true;
-					scope.startTimeout();
-				}
+				$http.get(scope.src).
+					success(function(data){
+						scope.secret = data.password;
+						scope.show = true;
+						scope.startTimeout();
+					}).
+					error(function(data){
+						alert('error getting password\n'+data);
+					});
 			};
 
 			var progress = 0;
+			scope.savePending = false;
 			scope.startTimeout = function(){
 				knob.knob().show();
+
+				scope.unwatchSecret = scope.$watch('secret', function(a,b){
+					if (_.isUndefined(a) || a === b) return;
+					
+					console.log('watch secret',a,b, a===b);
+					scope.stopTimeout();
+					scope.saveDebounce();
+					scope.savePending = true;
+				});
 
 				progress=0;
 
@@ -54,9 +66,9 @@ app.directive('secret', ['$timeout', function($timeout){
 						if(progress > MAX_KNOB_VAL){
 							scope.stopTimeout();
 							scope.show = false;
+						} else {
+							d1();
 						}
-
-						d1();
 					},100);
 				};
 				d1();
@@ -70,9 +82,26 @@ app.directive('secret', ['$timeout', function($timeout){
 				progress=0;
 			};
 
-			scope.$watch('secret', function(a,b){
-				scope.stopTimeout();
-			});
+			scope.hide = function(){
+				if (scope.savePending) return;
+				scope.show = false;
+
+				delete scope.secret;
+				scope.unwatchSecret();
+			};
+
+			scope.save = function(){
+				scope.savePending = false;
+				$http.post(scope.src, {password:scope.secret}).
+					success(function(){
+						console.log('password saved');
+					}).
+					error(function(data){
+						console.log('error saving '+data);
+					});
+			};
+
+			scope.saveDebounce = _.debounce(scope.save, 500);
 		}
 	};
 }]);
