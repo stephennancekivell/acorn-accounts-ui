@@ -58,7 +58,8 @@ module.exports = function(grunt) {
           {expand: true, src: ['**/*.html'], dest: 'target/', cwd:'app/'} // includes files in path and its subdirs
         ]
       }
-    }
+    },
+    clean: ['target/**']
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -66,7 +67,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['less', 'bower', 'uglify', 'copy']);
-  grunt.registerTask('go', ['less', 'watch']);
+  grunt.registerTask('default', ['clean', 'less', 'bower', 'uglify', 'copy']);
+  grunt.registerTask('go', ['clean', 'less', 'bower', 'uglify', 'copy', 'watch']);
 };
