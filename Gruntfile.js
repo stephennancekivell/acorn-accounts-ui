@@ -18,6 +18,13 @@ module.exports = function(grunt) {
           nospawn: true
         }
       }
+    },
+    uglify: {
+      t: {
+        files: {
+          'dest/app.min.js': ['app/**/*.js']
+        }
+      }
     }
   });
 
@@ -26,4 +33,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['less']);
   grunt.registerTask('go', ['less', 'watch']);
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 };
