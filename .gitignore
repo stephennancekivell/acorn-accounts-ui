@@ -3,3 +3,4 @@ logs/*
 components/*
 target/*
 node_modules/*
+app/components/*

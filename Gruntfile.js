@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       },
       uglify: {
         tasks: ['uglify'],
-        files: ['app/**/*.js'],
+        files: ['app/js/**/*.js', 'app/lib/**/*.js'],
         options: {
           nospawn: true
         }
@@ -43,19 +43,15 @@ module.exports = function(grunt) {
     uglify: {
       t: {
         files: {
-          'target/app.min.js': ['app/**/*.js']
+          'target/app.min.js': ['app/js/**/*.js', 'app/lib/**/*.js']
         }
-      }
-    },
-    bower: {
-      dev: {
-        dest: 'target/components'
       }
     },
     copy: {
       main: {
         files: [
-          {expand: true, src: ['**/*.html'], dest: 'target/', cwd:'app/'} // includes files in path and its subdirs
+          {expand: true, src: ['**/*.html'], dest: 'target/', cwd:'app/'},
+          {expand: true, src: ['**/*'], dest: 'target/components', cwd:'app/components'}
         ]
       }
     },
@@ -64,11 +60,10 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-bower');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['clean', 'less', 'bower', 'uglify', 'copy']);
-  grunt.registerTask('go', ['clean', 'less', 'bower', 'uglify', 'copy', 'watch']);
+  grunt.registerTask('default', ['clean', 'less', 'uglify', 'copy']);
+  grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'watch']);
 };
