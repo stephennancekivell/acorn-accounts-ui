@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     uglify: {
       t: {
         files: {
-          'dest/app.min.js': ['app/**/*.js']
+          'target/app.min.js': ['app/**/*.js']
         }
       }
     }
