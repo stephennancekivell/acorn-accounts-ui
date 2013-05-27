@@ -2,3 +2,4 @@ logs/*
 !.gitkeep
 components/*
 target/*
+node_modules/*

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     less: {
       p: {
         files: {
-          "app/css/compiled.css": "app/css/*.less"
+          "target/compiled.css": "app/css/*.less"
         }
       }
     },
@@ -14,6 +14,27 @@ module.exports = function(grunt) {
       less: {
         files: ['app/css/*.less'],
         tasks: ['less'],
+        options: {
+          nospawn: true
+        }
+      },
+      copy: {
+        tasks: ['copy'],
+        files: ['app/**/*.html'],
+        options: {
+          nospawn: true
+        }
+      },
+      uglify: {
+        tasks: ['uglify'],
+        files: ['app/**/*.js'],
+        options: {
+          nospawn: true
+        }
+      },
+      bower: {
+        tasks: ['bower'],
+        files: ['components/**/*'],
         options: {
           nospawn: true
         }
@@ -25,13 +46,27 @@ module.exports = function(grunt) {
           'target/app.min.js': ['app/**/*.js']
         }
       }
+    },
+    bower: {
+      dev: {
+        dest: 'target/components'
+      }
+    },
+    copy: {
+      main: {
+        files: [
+          {expand: true, src: ['**/*.html'], dest: 'target/', cwd:'app/'} // includes files in path and its subdirs
+        ]
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
-
-  grunt.registerTask('default', ['less']);
-  grunt.registerTask('go', ['less', 'watch']);
+  grunt.loadNpmTasks('grunt-bower');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+
+  grunt.registerTask('default', ['less', 'bower', 'uglify', 'copy']);
+  grunt.registerTask('go', ['less', 'watch']);
 };
