@@ -16,7 +16,9 @@ DIST_FILE=`basename $1`
 ssh stephenn.info <<EOF
 	mkdir -p $TARGET/dist
 	unzip $DIST_FILE -d $TARGET/new
+	mv $TARGET/dist $TARGET/old
 	mv $TARGET/new $TARGET/dist
+	rm -r $TARGET/old
 
 	rm $DIST_FILE
 EOF
