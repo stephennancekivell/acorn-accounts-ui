@@ -55,7 +55,17 @@ module.exports = function(grunt) {
         ]
       }
     },
-    clean: ['target/**']
+    clean: ['target/**'],
+    compress: {
+      main:{
+        options: {
+          archive: 'dist.zip'
+        },
+        files: [
+          {cwd: 'target/', src:['**/*'], expand:true }
+        ]
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -63,6 +73,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   grunt.registerTask('default', ['clean', 'less', 'uglify', 'copy']);
   grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'watch']);
