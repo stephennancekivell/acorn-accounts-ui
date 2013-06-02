@@ -12,11 +12,20 @@ app.controller('LoginCtrl', [
 		$http,
 		authService,
 		$cookies){
+
+	var loginCount = 0;
 	$rootScope.$on('event:auth-loginRequired', function(){
-		if (_.isUndefined($cookies['x-remote-user'])){
-			$scope.isModalOpen = true;
+		loginCount += 1;
+
+		if (loginCount > 100){
+			alert('too many logins, somethings wrong');
 		} else {
-			$http.defaults.headers.common['x-remote-user'] = $cookies['x-remote-user'];
+			if (_.isUndefined($cookies['x-remote-user'])){
+				$scope.isModalOpen = true;
+			} else {
+				$http.defaults.headers.common['x-remote-user'] = $cookies['x-remote-user'];
+				authService.loginConfirmed();
+			}
 		}
 	});
 

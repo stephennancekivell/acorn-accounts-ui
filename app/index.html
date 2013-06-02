@@ -30,15 +30,14 @@
             <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
             <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
           </ul>
-          <div ng-include="'partials/Login.html'">
-            <a class="pull-right brand"
-              ng-click="isModalShowing=true;">{{currentUser.name}}</a>
+          <a class="pull-right brand"
+            ng-click="isModalShowing=true;">{{currentUser.name}}</a>
           </div>
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
-  <div ng-include="'partials/Login.html'"></div>
+  <div ng-include="'partials/Login.html'">
 
   <div class="container" ng-view></div>
 
@@ -53,6 +52,7 @@
   <script src="./components/underscore/underscore.js"></script>
   <script src="./components/angular-dragon-drop/dragon-drop.js"></script>
   <script src="./components/angular-http-auth/src/http-auth-interceptor.js"></script>
+  <script src="./lib/ui-bootstrap-tpls.js"></script>
 
   <script src="app.min.js"></script>
 </body>
