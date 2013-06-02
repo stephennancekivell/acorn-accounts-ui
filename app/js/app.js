@@ -9,7 +9,9 @@ var app = angular.module(
 		'ui.if',
 		'ui.bootstrap',
 		'btford.dragon-drop',
-		'ui.route']).
+		'ui.route',
+		'http-auth-interceptor',
+		'ngCookies']).
 	config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/p', {
 			templateUrl: 'partials/Account.html',
@@ -27,4 +29,7 @@ var app = angular.module(
 			reloadOnSearch: false
 		});
 		$routeProvider.otherwise({redirectTo: '/p'});
+	}]).
+	run(['$rootScope', 'Users', function($rootScope, Users){
+		$rootScope.currentUser = Users.get({id:-1});
 	}]);

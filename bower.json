@@ -2,16 +2,18 @@
   "name": "passwordSafeUI",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "1.0.6",
-    "angular-resource": "1.0.6",
-    "angular-scenario": "1.0.6",
-    "angular-mocks": "1.0.6",
+    "angular": "1.0.7",
+    "angular-resource": "1.0.7",
+    "angular-scenario": "1.0.7",
+    "angular-cookies": "1.0.7",
+    "angular-mocks": "1.0.7",
     "bootstrap": "http://twitter.github.com/bootstrap/assets/bootstrap.zip",
     "angular-ui-utils": "v0.0.1",
     "underscore": "~1.4.4",
     "angular-dragon-drop": "~0.0.1",
     "jquery": "~1.9.1",
-    "jquery-knob": "~1.2.2"
+    "jquery-knob": "~1.2.2",
+    "angular-http-auth": "latest"
   },
   "ignore": [
     "**/.*",

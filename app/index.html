@@ -16,24 +16,29 @@
 <body>
 
   <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">Password Safe</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li ui-route="#/p" ng-class="{active: $uiRoute}"><a href="#/p">Passwords</a></li>
-              <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
-              <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">Password Safe</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li ui-route="#/p" ng-class="{active: $uiRoute}"><a href="#/p">Passwords</a></li>
+            <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
+            <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
+          </ul>
+          <div ng-include="'partials/Login.html'">
+            <a class="pull-right brand"
+              ng-click="isModalShowing=true;">{{currentUser.name}}</a>
+          </div>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
+  </div>
+  <div ng-include="'partials/Login.html'"></div>
 
   <div class="container" ng-view></div>
 
@@ -41,11 +46,13 @@
   <script src="./components/jquery-knob/js/jquery.knob.js"></script>
   <script src="./components/angular/angular.js"></script>
   <script src="./components/angular-resource/angular-resource.js"></script>
+  <script src="./components/angular-cookies/angular-cookies.js"></script>
   <script src="./components/angular-ui-utils/modules/event/event.js"></script>
   <script src="./components/angular-ui-utils/modules/if/if.js"></script>
   <script src="./components/angular-ui-utils/modules/route/route.js"></script>
   <script src="./components/underscore/underscore.js"></script>
   <script src="./components/angular-dragon-drop/dragon-drop.js"></script>
+  <script src="./components/angular-http-auth/src/http-auth-interceptor.js"></script>
 
   <script src="app.min.js"></script>
 </body>

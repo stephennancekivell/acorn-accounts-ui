@@ -1,0 +1,14 @@
+<div ng-controller="LoginCtrl">
+	<div modal="isModalOpen" close="closeCalled();" opts="modalOptions">
+		<div class="modal-header">
+			<h3>You need to login</h3>
+		</div>
+		<form class="modal-body form-inline" ng-submit="submit();">
+			<input type="text"
+				placeholder="user name"
+				id="inputUserName"
+				ng-model="username"/>
+			<input class="btn" type="submit"></input>
+		</form>
+	</div>
+</div>

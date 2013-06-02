@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         tasks: ['copy'],
         files: ['app/**/*.html'],
         options: {
-          nospawn: true
+          nospawn: false
         }
       },
       uglify: {
