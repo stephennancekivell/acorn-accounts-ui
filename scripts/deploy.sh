@@ -3,7 +3,7 @@
 SCRIPT_DIR=`dirname $0`
 
 SERVER=stephenn.info
-TARGET=projects/passwordSafeUI
+TARGET=/var/www/demo.acorn-accounts.com
 
 if [[ -z "$1" ]]; then
 	echo "usage: deploy.sh dist.zip"
@@ -14,11 +14,8 @@ scp $1 $SERVER:.
 DIST_FILE=`basename $1`
 
 ssh stephenn.info <<EOF
-	mkdir -p $TARGET/dist
-	unzip $DIST_FILE -d $TARGET/new
-	mv $TARGET/dist $TARGET/old
-	mv $TARGET/new $TARGET/dist
-	rm -r $TARGET/old
-
+	rm -r /var/www/demo.acorn-accounts.com/*
+	unzip $DIST_FILE -d $TARGET
+	
 	rm $DIST_FILE
 EOF

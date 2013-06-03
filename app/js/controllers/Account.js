@@ -111,7 +111,7 @@ app.controller('AccountListCtrl', [
 		};
 
 		$scope.removePermission = function(perm){
-			$http.delete('/play/accounts/'+perm.accountID+
+			$http.delete('/api/accounts/'+perm.accountID+
 					'/permissions/'+perm.partyID)
 				.success(function (){
 					$scope.selected.permissions = _.reject(

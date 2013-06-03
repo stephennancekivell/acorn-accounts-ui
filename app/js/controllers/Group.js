@@ -12,7 +12,7 @@ app.controller('GroupCtrl', ['Groups', '$scope', '$location', '$routeParams', 'U
 
 		$scope.$watch('selected', function(){
 			if (_.isUndefined($scope.selected)) return;
-			$http.post('/play/groups/'+$scope.selected.id+'/users', $scope.selected.users);
+			$http.post('/api/groups/'+$scope.selected.id+'/users', $scope.selected.users);
 		},true);
 
 		$scope.isSelected = function(user){
