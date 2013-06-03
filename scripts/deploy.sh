@@ -14,8 +14,9 @@ scp $1 $SERVER:.
 DIST_FILE=`basename $1`
 
 ssh stephenn.info <<EOF
-	rm -r /var/www/demo.acorn-accounts.com/*
-	unzip $DIST_FILE -d $TARGET
+	sudo rm -r $TARGET/*
+	sudo unzip $DIST_FILE -d $TARGET
+	sudo chown -R www-data:www-data $TARGET
 	
 	rm $DIST_FILE
 EOF
