@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Password Safe</title>
-  <link rel="stylesheet" href="css/compiled.css"/>
+  <link rel="stylesheet" href="./css/compiled.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./components/bootstrap/css/bootstrap.css" rel="stylesheet">
   <style>
@@ -16,26 +16,29 @@
 <body>
 
   <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">Password Safe</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li ui-route="#/p" ng-class="{active: $uiRoute}"><a href="#/p">Passwords</a></li>
-              <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
-              <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">Password Safe</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li ui-route="#/p" ng-class="{active: $uiRoute}"><a href="#/p">Passwords</a></li>
+            <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
+            <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
+          </ul>
+          <a class="pull-right brand">{{currentUser.name}}</a>
+          </div>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-
+  </div>
+  
   <div class="container" ng-view></div>
+  <div ng-include="'partials/Login.html'">
 
   <script src="./components/jquery/jquery.min.js"></script>
   <script src="./components/jquery-knob/js/jquery.knob.js"></script>

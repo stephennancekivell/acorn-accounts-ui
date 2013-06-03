@@ -6,7 +6,8 @@ module.exports = function(grunt) {
     less: {
       p: {
         files: {
-          "target/compiled.css": "app/css/*.less"
+          "target/css/compiled.css": "app/css/*.less",
+          "app/css/compiled.css": "app/css/*.less"
         }
       }
     },
@@ -41,6 +42,11 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
+      options: {
+        // mangle: false,
+        // compress: false,
+        // beautify: true
+      },
       t: {
         files: {
           'target/app.min.js': ['app/js/**/*.js', 'app/lib/**/*.js']

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Password Safe</title>
-  <link rel="stylesheet" href="compiled.css"/>
+  <link rel="stylesheet" href="./css/compiled.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./components/bootstrap/css/bootstrap.css" rel="stylesheet">
   <style>
@@ -30,16 +30,15 @@
             <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
             <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
           </ul>
-          <a class="pull-right brand"
-            ng-click="isModalShowing=true;">{{currentUser.name}}</a>
+          <a class="pull-right brand">{{currentUser.name}}</a>
           </div>
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
-  <div ng-include="'partials/Login.html'">
-
+  
   <div class="container" ng-view></div>
+  <div ng-include="'partials/Login.html'">
 
   <script src="./components/jquery/jquery.min.js"></script>
   <script src="./components/jquery-knob/js/jquery.knob.js"></script>

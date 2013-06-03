@@ -13,11 +13,15 @@ app.controller('LoginCtrl', [
 		authService,
 		$cookies){
 
+	app.LoginCtrlSc = $scope;
+
+	console.log('LoginCtrl');
+
 	var loginCount = 0;
 	$rootScope.$on('event:auth-loginRequired', function(){
 		loginCount += 1;
 
-		if (loginCount > 100){
+		if (loginCount > 30){
 			alert('too many logins, somethings wrong');
 		} else {
 			if (_.isUndefined($cookies['x-remote-user'])){
