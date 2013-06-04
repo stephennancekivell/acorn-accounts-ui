@@ -1,17 +1,14 @@
 #!/bin/bash
 
 SCRIPT_DIR=`dirname $0`
-
+DIST_FILE=dist.zip
 SERVER=stephenn.info
 TARGET=/var/www/demo.acorn-accounts.com
 
-if [[ -z "$1" ]]; then
-	echo "usage: deploy.sh dist.zip"
-	exit 0
-fi
+cd $SCRIPT_DIR/..
+grunt
 
-scp $1 $SERVER:.
-DIST_FILE=`basename $1`
+scp $DIST_FILE $SERVER:.
 
 ssh stephenn.info <<EOF
 	sudo rm -r $TARGET/*
