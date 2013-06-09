@@ -15,7 +15,8 @@
 </head>
 <body>
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top"
+    ng-controller="HeaderCtrl">
     <div class="navbar-inner">
       <div class="container">
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -30,15 +31,15 @@
             <li ui-route="#/u" ng-class="{active: $uiRoute}"><a href="#/u">Users</a></li>
             <li ui-route="#/g" ng-class="{active: $uiRoute}"><a href="#/g">Groups</a></li>
           </ul>
-          <a class="pull-right brand">{{currentUser.name}}</a>
+          <a class="pull-right brand" ng-click="logout();">{{currentUser.name}}</a>
           </div>
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
-  
+  <div ng-include="'partials/Login.html'"></div>
+
   <div class="container" ng-view></div>
-  <div ng-include="'partials/Login.html'">
 
   <script src="./components/jquery/jquery.min.js"></script>
   <script src="./components/jquery-knob/js/jquery.knob.js"></script>

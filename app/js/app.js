@@ -29,7 +29,4 @@ var app = angular.module(
 			reloadOnSearch: false
 		});
 		$routeProvider.otherwise({redirectTo: '/p'});
-	}]).
-	run(['$rootScope', 'Users', function($rootScope, Users){
-		$rootScope.currentUser = Users.get({id:-1});
 	}]);

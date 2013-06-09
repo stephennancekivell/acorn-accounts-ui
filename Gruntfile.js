@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         tasks: ['uglify'],
         files: ['app/js/**/*.js', 'app/lib/**/*.js'],
         options: {
-          nospawn: true
+          nospawn: false
         }
       },
       bower: {
