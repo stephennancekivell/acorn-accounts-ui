@@ -16,28 +16,24 @@ module.exports = function(grunt) {
         files: ['app/css/*.less'],
         tasks: ['less'],
         options: {
-          nospawn: true
+          nospawn: false,
+          livereload: true
         }
       },
       copy: {
         tasks: ['copy'],
         files: ['app/**/*.html'],
         options: {
-          nospawn: false
+          nospawn: false,
+          livereload: true
         }
       },
       uglify: {
         tasks: ['uglify'],
         files: ['app/js/**/*.js', 'app/lib/**/*.js'],
         options: {
-          nospawn: false
-        }
-      },
-      bower: {
-        tasks: ['bower'],
-        files: ['components/**/*'],
-        options: {
-          nospawn: true
+          nospawn: false,
+          livereload: true
         }
       }
     },

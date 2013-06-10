@@ -1,7 +1,8 @@
 <div class="row-fluid">
-	<div class="span4">
-		<ul>
-			<li ng-repeat="account in accounts"
+	<div class="span2 well">
+		<input type="text" class="search-query input-small" ng-model="searchQuery" />
+		<ul class="account-list">
+			<li ng-repeat="account in accounts | filter:searchQuery"
 				ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
 				<a ng-href="#/p?id={{account.id}}" ng-click="select(account)">{{account.title}}</a>
 				<i class="icon-remove"
@@ -9,18 +10,23 @@
 					ng-click="remove(account);"></i>
 			</li>
 		</ul>
-		<button class="btn" ng-click="makeNew()">Create New Account</button>
+		<button class="btn pull-right"
+			ng-click="makeNew()">
+				Add
+				<i class="icon-plus-sign" />
+		</button>
 	</div>
 	<div class="span8">
 		<div ui-if="selected">
 			<tabs>
-				<pane heading="Account">
+				<pane heading="Details">
 					<form class="form-horizontal">
 						<div class="control-group">
 							<label class="control-label"
 								for="inputTitle">Title</label>
 							<div class="controls">
 								<input type="text"
+									class="input-block-level"
 									placeholder="Title"
 									id="inputTitle"
 									ng-model="selected.title"
@@ -32,6 +38,7 @@
 								for="inputUserName">User Name</label>
 							<div class="controls">
 								<input type="text"
+									class="input-block-level"
 									placeholder="user name"
 									id="inputUserName"
 									ng-model="selected.username"
@@ -53,6 +60,7 @@
 								for="inputDescription">Description</label>
 							<div class="controls">
 								<textarea 
+									class="input-block-level"
 									placeholder="Description"
 									id="inputDescription"
 									ng-model="selected.description"
@@ -102,12 +110,13 @@
 							</div>
 							<div class="span4">
 								<h4>Dont</h4>
+								<ul>
 									<li ng-repeat="party in allParties | filter:passwordPermissionsHaveGroup:party"
 										is-hovered>{{party.name}}
 										<a ng-show="isHovered"
 											ng-click="addPermission(party, true);">Grant</a>
 									</li>
-								</h4>
+								</ul>
 							</div>
 						</pane>
 					</tabs>
@@ -116,7 +125,7 @@
 					<ul>
 						<li>read by Joe 5 min ago</li>
 						<li>read by Frances 5 min ago</li>
-						<li>updated by Paul 6 days ago</li>
+						<li>modified by Paul 27 May</li>
 					</ul>
 				</pane>
 			</tabs>
