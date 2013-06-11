@@ -1,21 +1,5 @@
 <div class="row-fluid">
-	<div class="span2 well">
-		<input type="text" class="search-query input-small" ng-model="searchQuery" />
-		<ul class="account-list">
-			<li ng-repeat="account in accounts | filter:searchQuery"
-				ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
-				<a ng-href="#/p?id={{account.id}}" ng-click="select(account)">{{account.title}}</a>
-				<i class="icon-remove"
-					ng-show="removeVisible"
-					ng-click="remove(account);"></i>
-			</li>
-		</ul>
-		<button class="btn pull-right"
-			ng-click="makeNew()">
-				Add
-				<i class="icon-plus-sign" />
-		</button>
-	</div>
+	<div rich-list="accounts" />
 	<div class="span8">
 		<div ui-if="selected">
 			<tabs>
