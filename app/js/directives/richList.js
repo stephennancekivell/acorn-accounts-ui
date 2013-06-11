@@ -5,7 +5,7 @@ app.directive('richList', ['$location', function($location){
 					'<input type="text" class="search-query input-small" ng-model="searchQuery" />'+
 					'<ul class="rich-list">'+
 						'<li ng-repeat="thing in richList | filter:searchQuery">'+
-							'<a ng-href="#{{path}}?id={{thing.id}}" ng-click="select(thing)">{{thing.title}}</a>'+
+							'<a ng-href="#{{path}}?id={{thing.id}}" ng-click="select(thing)">{{thing.name}}</a>'+
 						'</li>'+
 					'</ul>'+
 					'<button class="btn pull-right"'+

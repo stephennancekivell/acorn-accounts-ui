@@ -64,7 +64,7 @@ app.controller('AccountListCtrl', [
 		$scope.makeNew = function(){
 			Accounts.save({id:-1,
 				username: '',
-				title:'new account',
+				name:'new account',
 				description:'',
 				permissions: []},
 				function ok(data){

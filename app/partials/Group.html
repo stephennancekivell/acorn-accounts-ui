@@ -1,17 +1,5 @@
 <div class="row-fluid">
-	<div class="span4">
-		<ul>
-			<li ng-repeat="group in groups"
-				ui-event="{'mouseenter': 'removeVisible=true;', 'mouseleave': 'removeVisible=false;'}">
-				<a ng-href="#/g?id={{group.id}}"
-					ng-click="select(group)">{{group.name}}</a>
-				<i class="icon-remove"
-					ng-show="removeVisible"
-					ng-click="remove(group);"></i>
-			</li>
-		</ul>
-		<button class="btn" ng-click="makeNew()">Create New Group</button>
-	</div>
+	<div rich-list="groups" />
 	<div class="span8">
 		<div ui-if="selected">
 			<tabs>
