@@ -20,9 +20,17 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
-      copy: {
+      partials: {
         tasks: ['copy'],
-        files: ['app/**/*.html'],
+        files: ['app/*/*.html'],
+        options: {
+          nospawn: false,
+          livereload: true
+        }
+      },
+      index: {
+        tasks: ['preprocess:all'],
+        files: ['app/index.html'],
         options: {
           nospawn: false,
           livereload: true
@@ -52,7 +60,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {expand: true, src: ['**/*.html'], dest: 'target/', cwd:'app/'},
+          {expand: true, src: ['*/*.html'], dest: 'target/', cwd:'app/'},
           {expand: true, src: ['**/*'], dest: 'target/components', cwd:'app/components'}
         ]
       }
@@ -67,6 +75,17 @@ module.exports = function(grunt) {
           {cwd: 'target/', src:['**/*'], expand:true }
         ]
       }
+    },
+    preprocess:{
+      all: {
+        src: './app/index.html',
+        dest: './target/index.html'
+      }
+    },
+    env: {
+      dev:{
+        NODE_ENV: 'DEVELOPMENT'
+      }
     }
   });
 
@@ -76,7 +95,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-preprocess');
 
-  grunt.registerTask('default', ['clean', 'less', 'uglify', 'copy', 'compress']);
-  grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'watch']);
+  grunt.registerTask('default', ['clean', 'less', 'uglify', 'copy', 'preprocess:all', 'compress']);
+  grunt.registerTask('dev', ['clean', 'less', 'uglify', 'copy', 'env:dev', 'preprocess:all']);
+  grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'env:dev', 'preprocess:all', 'watch']);
 };
