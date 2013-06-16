@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         }
       },
       partials: {
-        tasks: ['copy'],
+        tasks: ['ngtemplates'],
         files: ['app/*/*.html'],
         options: {
           nospawn: false,
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {expand: true, src: ['*/*.html'], dest: 'target/', cwd:'app/'},
+          // {expand: true, src: ['*/*.html'], dest: 'target/', cwd:'app/'},
           {expand: true, src: ['**/*'], dest: 'target/components', cwd:'app/components'}
         ]
       }
@@ -86,6 +86,16 @@ module.exports = function(grunt) {
       dev:{
         NODE_ENV: 'DEVELOPMENT'
       }
+    },
+    ngtemplates: {
+      app: {
+        options:{
+          module: 'myApp',
+          base: 'app'
+        },
+        src: 'app/partials/*.html',
+        dest: 'target/templates.js'
+      }
     }
   });
 
@@ -97,8 +107,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-preprocess');
+  grunt.loadNpmTasks('grunt-angular-templates');
 
   grunt.registerTask('default', ['clean', 'less', 'uglify', 'copy', 'preprocess:all', 'compress']);
   grunt.registerTask('dev', ['clean', 'less', 'uglify', 'copy', 'env:dev', 'preprocess:all']);
-  grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'env:dev', 'preprocess:all', 'watch']);
+  grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'ngtemplates', 'env:dev', 'preprocess:all', 'watch']);
 };
