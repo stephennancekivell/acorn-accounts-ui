@@ -36,17 +36,17 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
-      karma: {
-        tasks: ['karma'],
-        files: ['app/js/**/*.js', 'test/unit/**/*.js'],
+      js: {
+        tasks: ['karma', 'uglify'],
+        files: ['app/js/**/*.js'],
         options: {
-          nospawn: true,
+          nospawn: false,
           livereload: true
         }
       },
-      uglify: {
-        tasks: ['uglify'],
-        files: ['app/js/**/*.js', 'app/lib/**/*.js'],
+      testJs: {
+        tasks: ['karma'],
+        files: ['test/unit/**/*.js'],
         options: {
           nospawn: false,
           livereload: true
