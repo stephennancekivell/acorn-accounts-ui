@@ -1,5 +1,5 @@
 {
-  "name": "PasswordSafeUI",
+  "name": "acorn-accounts-ui",
   "version": "0.0.1",
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -12,6 +12,7 @@
     "grunt-contrib-compress": "~0.5.1",
     "grunt-env": "~0.4.0",
     "grunt-preprocess": "~2.3.0",
-    "grunt-angular-templates": "~0.3.8"
+    "grunt-angular-templates": "~0.3.8",
+    "grunt-karma": "~0.4.5"
   }
 }

@@ -36,6 +36,14 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
+      karma: {
+        tasks: ['karma'],
+        files: ['app/js/**/*.js', 'test/unit/**/*.js'],
+        options: {
+          nospawn: true,
+          livereload: true
+        }
+      },
       uglify: {
         tasks: ['uglify'],
         files: ['app/js/**/*.js', 'app/lib/**/*.js'],
@@ -96,6 +104,12 @@ module.exports = function(grunt) {
         src: 'app/partials/*.html',
         dest: 'target/templates.js'
       }
+    },
+    karma: {
+      unit: {
+        configFile: 'config/karma.conf.js',
+        singleRun: true
+      }
     }
   });
 
@@ -108,8 +122,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-preprocess');
   grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('default', ['clean', 'less', 'uglify', 'copy', 'preprocess:all', 'compress']);
   grunt.registerTask('dev', ['clean', 'less', 'uglify', 'copy', 'env:dev', 'preprocess:all']);
-  grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'ngtemplates', 'env:dev', 'preprocess:all', 'watch']);
+  grunt.registerTask('go', ['clean', 'less', 'uglify', 'copy', 'ngtemplates', 'env:dev', 'preprocess:all', 'karma', 'watch']);
 };
